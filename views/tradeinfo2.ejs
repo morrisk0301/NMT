@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trade Info</title>
+</head>
+<body>
+<form method="post" action="/trade">
+    <label for="trade_head">구매 제목</label><input type="text" id="trade_head" name="trade_head" value=""/><br><br>
+    <label for="trade_body">구매 내용</label><br>
+    <textarea cols=100, rows=20 name="trade_body" id="trade_body"></textarea><br><br>
+    <label for="trade_category">구매 카테고리</label><input type="text" id="trade_category" name="trade_category" value=""/><br><br>
+    <label for="trade_verification_command">검증용 질문</label><br>
+    <textarea cols=100, rows=20 name="trade_verification_command" id="trade_verification_command"></textarea><br><br>
+    <label for="trade_img">구매 이미지</label><br>
+    <div id="imageDIV"></div>
+    <input type="file" id="img_input" name="img_input" accept="image/*" multiple/>
+    <input type="hidden" value="" name="trade_img" id="trade_img"/><br><br>
+    <input type="hidden" id="trade_id" value="<%= trade_id %>"/>
+
+    <input type="submit" id="trade_submit" value="구매 수정"/>
+</form>
+<br>
+<a href="/sell/<%= trade_id %>">판매 등록</a><br><br>
+
+<br><a href="/buy">뒤로 가기</a>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    let image_str;
+    const host = location.host;
+    const trade_id = "<%= trade_id %>";
+
+    function loadFile(file) {
+        return new Promise(function (resolve, reject) {
+            var fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = function (e) {
+                const result = e.target.result;
+                resolve(result);
+            };
+        })
+    }
+
+    function getTrade() {
+        return new Promise(function (resolve, reject) {
+            fetch('http://' + host + '/trade/' + trade_id)
+                .then((res) => res.json())
+                .then((data) => {
+                    resolve(data);
+                })
+        })
+    }
+
+    function setValue(trade) {
+        $("#trade_head").val(trade.trade_head);
+        $("#trade_body").val(trade.trade_body);
+        $("#trade_category").val(trade.trade_category);
+        $("#trade_verification_command").val(trade.trade_verification_command);
+        trade.trade_img.forEach(function (item) {
+            $('#imageDIV').prepend('<img id="theImg" src="'+item+'" /><br>');
+        })
+
+    }
+
+    window.onload = async function () {
+        const trade = await getTrade();
+        setValue(trade);
+    }
+
+
+    $("#img_input").on('change', function (event) {
+        var files = this.files;
+        var file = [];
+
+        Object.keys(files).reduce(function (total, index) {
+            return loadFile(files[index]).then(function (dataUri) {
+                file.push(dataUri);
+            });
+        }, Promise.resolve()).then(function () {
+            image_str = JSON.stringify(file);
+        });
+    });
+
+
+    $('#trade_submit').on('click', function (event) {
+        let query = {trade_img: image_str, trade_id: trade_id};
+        if ($("#trade_head").val() !== '') query.trade_head = $('#trade_head').val();
+        if ($("#trade_body").val() !== '') query.trade_body = $('#trade_body').val();
+        if ($("#trade_category").val() !== '') query.trade_category = $('#trade_category').val();
+        if ($("#trade_verification_command").val()!=='') query.trade_category = $('#trade_verification_command').val();
+
+        $.ajax({
+            url: '/trade',    //Your api url
+            type: 'PUT',   //type is any HTTP method
+            data: query,      //Data as js object
+            success: function (data) {
+                document.write((JSON.stringify(data)));
+            }
+        });
+        return false;
+    })
+
+
+</script>
+</body>
+</html>

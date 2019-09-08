@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+    <title>Password Reset</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+    <style>
+        body        { padding-top:80px; }
+    </style>
+
+</head>
+<body>
+<div class="container">
+
+    <div class="col-sm-6 col-sm-offset-3">
+
+        <h1><span class="fa fa-sign-in"></span> NMT 비밀번호 변경</h1>
+        <form action="/reset" method="post" id="form_reset">
+            <div class="form-group">
+                <label>회원 ID</label>
+                <input type="text" class="form-control" value="<%=email%>" disabled>
+            </div>
+            <div class="form-group">
+                <label>비밀번호</label>
+                <input type="password" class="form-control" name="password" id="password">
+                <input type="hidden" class="form-control" name="token" value="<%=token%>">
+            </div>
+
+            <div class="form-group">
+                <label>비밀번호 확인</label>
+                <input type="password" class="form-control" id="password_confirm">
+            </div>
+
+            <button type="submit" class="btn btn-warning btn-lg">비밀번호 변경</button>
+        </form>
+        <hr>
+
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $('#form_reset').on('submit', function(event){
+        if($('#password').val().length<6){
+            alert("비밀번호가 6자리 이상이어야 합니다.")
+            return false;
+        }
+        if($('#password').val()!=$('#password_confirm').val()){
+            alert("비밀번호와 확인 값이 일치하지 않습니다.")
+            return false;
+        }
+    })
+</script>
+</body>
+</html>

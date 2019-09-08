@@ -1,0 +1,36 @@
+{
+  "name": "nmt-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "adm-zip": "^0.4.13",
+    "buffer": "^5.2.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "ejs": "^2.6.1",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "file-type": "^10.10.0",
+    "fs": "0.0.1-security",
+    "http-errors": "~1.6.2",
+    "image-data-uri": "^2.0.0",
+    "ipfs-http-client": "^31.1.0",
+    "mongoose": "^5.4.19",
+    "mongoose-auto-increment-fix": "^5.0.2",
+    "mongoose-paginate": "^5.0.3",
+    "morgan": "~1.9.0",
+    "node-cron": "^2.0.3",
+    "nodemailer": "^6.0.0",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sharp": "^0.22.0",
+    "truffle-hdwallet-provider": "^1.0.5",
+    "web3": "^1.0.0-beta.52"
+  }
+}

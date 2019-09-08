@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+
+    <title>Password Reset</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+    <style>
+        body        { padding-top:80px; }
+    </style>
+
+</head>
+<body>
+<div class="container">
+
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1>NMT 비밀번호 변경</h1>
+        <br>
+        <%if(reset){%>
+            <h4>비밀번호 변경이 완료되었습니다.</h4>
+            <h4>재설정한 비밀번호로 앱에서 로그인 해 주시기 바랍니다.</h4>
+            <br><br><br><br>
+            <p>기타 문의사항이 있으시면</p>
+            <p>sayjong_alom@naver.com으로 이메일 주시기 바랍니다</p>
+            <br>
+            <p>NMT 운영팀 드림</p>
+
+        <%} else{%>
+            <h4>비밀번호 변경을 실패하였습니다.</h4>
+            <h4>sayjong_alom@naver.com으로 이메일 주시기 바랍니다</h4>
+            <br>
+            <p>NMT 운영팀 드림</p>
+        <%}%>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</body>
+</html>
