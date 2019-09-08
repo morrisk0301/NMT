@@ -1,3 +1,7 @@
+# NMT
+
+Block chain(Ethereum's Smart Contract, Web3, IPFS) based Big Data Exchange
+
 # NMT-Server
 
 Server-side API for MOAH Project
