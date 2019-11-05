@@ -20,7 +20,7 @@
     "http-errors": "~1.6.2",
     "image-data-uri": "^2.0.0",
     "ipfs-http-client": "^31.1.0",
-    "mongoose": "^5.4.19",
+    "mongoose": "^5.7.5",
     "mongoose-auto-increment-fix": "^5.0.2",
     "mongoose-paginate": "^5.0.3",
     "morgan": "~1.9.0",
