@@ -29,7 +29,7 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "sharp": "^0.22.0",
+    "sharp": "^0.30.5",
     "truffle-hdwallet-provider": "^1.0.5",
     "web3": "^1.0.0-beta.52"
   }
